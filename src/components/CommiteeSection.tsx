@@ -24,7 +24,6 @@ export default function CommitteeSection() {
   useEffect(() => {
     async function fetchCommitteeData() {
       try {
-        // Fetch categories
         const { data: categoriesData, error: categoriesError } = await supabase
           .from('committee_categories')
           .select('*')
@@ -32,7 +31,6 @@ export default function CommitteeSection() {
 
         if (categoriesError) throw categoriesError
 
-        // Fetch members for each category
         const categoriesWithMembers = await Promise.all(
           categoriesData.map(async (category) => {
             const { data: membersData, error: membersError } = await supabase
@@ -63,10 +61,13 @@ export default function CommitteeSection() {
 
   if (isLoading) {
     return (
-      <section id="committee" className="py-20 bg-white">
+      <section id="committee" className="py-24 bg-gradient-to-b from-white via-orange-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center items-center min-h-[400px]">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-500"></div>
+            <div className="flex flex-col items-center gap-4">
+              <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-orange-500"></div>
+              <p className="text-gray-600 animate-pulse">Loading committee data...</p>
+            </div>
           </div>
         </div>
       </section>
@@ -74,27 +75,45 @@ export default function CommitteeSection() {
   }
 
   return (
-    <section id="committee" className="py-20 bg-white">
+    <section id="committee" className="py-24 bg-gradient-to-b from-white via-orange-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-center mb-16">Organizing Committee</h2>
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            Organizing Committee
+          </h2>
+          <div className="w-24 h-1 bg-orange-500 mx-auto rounded-full"></div>
+        </div>
         
-        <div className="space-y-12">
+        <div className="grid gap-8 md:gap-12">
           {categories.map((category) => (
-            <div key={category.id} className="bg-gray-50 rounded-lg p-6">
-              <h3 className="text-2xl font-semibold mb-6 text-orange-600">
-                {category.title}
-              </h3>
-              <div className="grid gap-4">
-                {category.members.map((member) => (
-                  <div 
-                    key={member.id}
-                    className="flex flex-col sm:flex-row sm:items-center gap-2"
-                  >
-                    <span className="font-medium text-gray-900">{member.name}</span>
-                    <span className="hidden sm:block text-gray-400 mx-2">•</span>
-                    <span className="text-gray-600">{member.affiliation}</span>
-                  </div>
-                ))}
+            <div 
+              key={category.id} 
+              className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+            >
+              <div className="bg-orange-500 py-4 px-6">
+                <h3 className="text-2xl font-bold text-white">
+                  {category.title}
+                </h3>
+              </div>
+              
+              <div className="p-6">
+                <div className="grid gap-6">
+                  {category.members.map((member) => (
+                    <div 
+                      key={member.id}
+                      className="flex flex-col sm:flex-row sm:items-center gap-2 p-4 rounded-xl hover:bg-orange-50 transition-colors duration-200"
+                    >
+                      <div className="flex-1">
+                        <h4 className="font-semibold text-lg text-gray-900">
+                          {member.name}
+                        </h4>
+                        <p className="text-gray-600 mt-1">
+                          {member.affiliation}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           ))}

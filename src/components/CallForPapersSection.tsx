@@ -24,7 +24,6 @@ export default function CallForPapersSection() {
   useEffect(() => {
     async function fetchData() {
       try {
-        // Fetch intro
         const { data: introData } = await supabase
           .from('call_for_papers_intro')
           .select('content')
@@ -34,7 +33,6 @@ export default function CallForPapersSection() {
           setIntro(introData.content)
         }
 
-        // Fetch categories with topics
         const { data: categoriesData } = await supabase
           .from('paper_categories')
           .select('*')
@@ -70,10 +68,13 @@ export default function CallForPapersSection() {
 
   if (isLoading) {
     return (
-      <section id="papers" className="py-20 bg-white">
+      <section id="papers" className="py-24 bg-gradient-to-b from-white via-orange-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center items-center min-h-[400px]">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-500"></div>
+            <div className="flex flex-col items-center gap-4">
+              <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-orange-500"></div>
+              <p className="text-gray-600 animate-pulse">Loading paper topics...</p>
+            </div>
           </div>
         </div>
       </section>
@@ -81,45 +82,65 @@ export default function CallForPapersSection() {
   }
 
   return (
-    <section id="papers" className="py-20 bg-white">
+    <section id="papers" className="py-24 bg-gradient-to-b from-white via-orange-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-center mb-16">Call for Papers</h2>
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            Call for Papers
+          </h2>
+          <div className="w-24 h-1 bg-orange-500 mx-auto rounded-full"></div>
+        </div>
         
         {/* Introduction */}
-        <div className="prose max-w-none mb-12">
-          <p className="text-gray-600 leading-relaxed">{intro}</p>
+        <div className="max-w-4xl mx-auto mb-16">
+          <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 hover:shadow-xl transition-shadow duration-300">
+            <p className="text-gray-600 leading-relaxed text-lg">
+              {intro}
+            </p>
+          </div>
         </div>
 
         {/* Categories and Topics */}
-        <div className="space-y-12">
+        <div className="grid gap-8 md:grid-cols-2 mb-16">
           {categories.map((category) => (
-            <div key={category.id} className="bg-gray-50 rounded-lg p-8">
-              <h3 className="text-2xl font-semibold mb-6 text-orange-600">
-                {category.title}
-              </h3>
-              <ul className="list-disc list-inside space-y-3">
-                {category.topics.map((topic) => (
-                  <li key={topic.id} className="text-gray-600">
-                    {topic.topic_name}
-                  </li>
-                ))}
-              </ul>
+            <div 
+              key={category.id} 
+              className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+            >
+              <div className="bg-orange-500 px-8 py-4">
+                <h3 className="text-xl font-bold text-white">
+                  {category.title}
+                </h3>
+              </div>
+              <div className="p-8">
+                <ul className="space-y-4">
+                  {category.topics.map((topic) => (
+                    <li 
+                      key={topic.id} 
+                      className="flex items-start gap-3 text-gray-600 hover:text-gray-900 transition-colors duration-200"
+                    >
+                      <span className="inline-block w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></span>
+                      <span>{topic.topic_name}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           ))}
         </div>
 
         {/* Additional Information */}
-        <div className="mt-12 text-center">
-          <p className="text-gray-600">
+        <div className="max-w-3xl mx-auto text-center bg-orange-50 rounded-2xl p-8">
+          <p className="text-gray-600 mb-4 text-lg">
             For detailed paper format and submission instructions, please visit the conference website:
           </p>
           <a 
             href="https://sites.google.com/view/icot-2024/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-orange-600 hover:text-orange-700 font-medium mt-2 inline-block"
+            className="inline-block bg-orange-500 text-white px-8 py-4 rounded-xl font-semibold hover:bg-orange-600 transition-colors duration-300 shadow-lg hover:shadow-xl"
           >
-            https://sites.google.com/view/icot-2024/
+            Visit Conference Website
           </a>
         </div>
       </div>

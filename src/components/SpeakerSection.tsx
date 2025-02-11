@@ -29,7 +29,6 @@ export default function SpeakerSection() {
           .order('created_at', { ascending: true })
 
         if (error) throw error
-
         setSpeakers(data || [])
       } catch (error) {
         console.error('Error fetching speakers:', error)
@@ -43,10 +42,13 @@ export default function SpeakerSection() {
 
   if (isLoading) {
     return (
-      <section id="speakers" className="py-20 bg-gray-50">
+      <section id="speakers" className="py-24 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center items-center min-h-[400px]">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-500"></div>
+            <div className="flex flex-col items-center gap-4">
+              <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-orange-500"></div>
+              <p className="text-gray-600 animate-pulse">Loading speakers...</p>
+            </div>
           </div>
         </div>
       </section>
@@ -54,17 +56,25 @@ export default function SpeakerSection() {
   }
 
   return (
-    <section id="speakers" className="py-20 bg-gray-50">
+    <section id="speakers" className="py-24 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-center mb-16">Keynote Speakers</h2>
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            Keynote Speakers
+          </h2>
+          <div className="w-24 h-1 bg-orange-500 mx-auto rounded-full"></div>
+        </div>
         
-        <div className="space-y-20">
+        <div className="space-y-12">
           {speakers.map((speaker) => (
-            <div key={speaker.id} className="bg-white rounded-lg shadow-lg p-8">
-              <div className="grid md:grid-cols-3 gap-8">
-                {/* Speaker Image */}
-                <div className="md:col-span-1">
-                  <div className="relative aspect-square rounded-lg overflow-hidden">
+            <div 
+              key={speaker.id} 
+              className="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:shadow-xl transition-all duration-300"
+            >
+              <div className="grid md:grid-cols-3 gap-8 p-8">
+                {/* Speaker Image and Info */}
+                <div className="md:col-span-1 flex flex-col items-center">
+                  <div className="relative w-64 h-64 rounded-2xl overflow-hidden shadow-lg mb-6 transform hover:scale-105 transition-transform duration-300">
                     <Image
                       src={speaker.image_url}
                       alt={speaker.name}
@@ -72,26 +82,36 @@ export default function SpeakerSection() {
                       className="object-cover"
                     />
                   </div>
-                  <div className="mt-4 text-center">
-                    <h3 className="text-xl font-semibold">{speaker.name}</h3>
-                    <p className="text-gray-600 mt-1">{speaker.title}</p>
-                    <p className="text-gray-600 mt-1">{speaker.position}</p>
-                    <p className="text-gray-600 mt-1">{speaker.affiliation}</p>
+                  <div className="text-center space-y-2">
+                    <h3 className="text-2xl font-bold text-gray-900">{speaker.name}</h3>
+                    <p className="text-lg text-orange-600 font-medium">{speaker.title}</p>
+                    <p className="text-gray-600">{speaker.position}</p>
+                    <p className="text-gray-600 italic">{speaker.affiliation}</p>
                   </div>
                 </div>
 
                 {/* Speaker Details */}
-                <div className="md:col-span-2">
-                  <div className="mb-8">
-                    <h4 className="text-lg font-semibold mb-2">Biography</h4>
-                    <p className="text-gray-600">{speaker.biography}</p>
+                <div className="md:col-span-2 space-y-8">
+                  <div>
+                    <h4 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                      <span className="w-8 h-1 bg-orange-500 rounded-full mr-3"></span>
+                      Biography
+                    </h4>
+                    <p className="text-gray-600 leading-relaxed">{speaker.biography}</p>
                   </div>
 
                   <div>
-                    <h4 className="text-lg font-semibold mb-2">{speaker.presentation_title}</h4>
+                    <h4 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                      <span className="w-8 h-1 bg-orange-500 rounded-full mr-3"></span>
+                      Presentation
+                    </h4>
+                    <h5 className="text-lg font-medium text-orange-600 mb-4">
+                      {speaker.presentation_title}
+                    </h5>
                     <div className="prose max-w-none">
-                      <h5 className="text-md font-medium mb-2">Abstract:</h5>
-                      <p className="text-gray-600">{speaker.presentation_abstract}</p>
+                      <p className="text-gray-600 leading-relaxed">
+                        {speaker.presentation_abstract}
+                      </p>
                     </div>
                   </div>
                 </div>
