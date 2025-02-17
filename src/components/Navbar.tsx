@@ -49,7 +49,7 @@ const Navbar = () => {
             <span className={`text-lg font-bold ${
               isScrolled ? 'text-gray-800' : 'text-white'
             }`}>
-              ICOT 2024
+              ICOT 2025
             </span>
           </div>
 

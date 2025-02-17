@@ -55,6 +55,45 @@ export default function SpeakerSection() {
     )
   }
 
+  // If no speakers data, show TBA section
+  if (speakers.length === 0) {
+    return (
+      <section id="speakers" className="py-24 bg-gradient-to-b from-white to-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Keynote Speakers
+            </h2>
+            <div className="w-24 h-1 bg-orange-500 mx-auto rounded-full"></div>
+          </div>
+          
+          <div className="bg-white rounded-2xl shadow-lg overflow-hidden p-12">
+            <div className="text-center space-y-6">
+              <h3 className="text-3xl font-bold text-gray-900">To Be Announced</h3>
+              <p className="text-xl text-gray-600">Our keynote speakers will be announced soon.</p>
+              <div className="w-16 h-16 mx-auto">
+                <svg 
+                  className="text-orange-500 w-full h-full" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" 
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  // If there are speakers, show them as before
   return (
     <section id="speakers" className="py-24 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -72,7 +111,6 @@ export default function SpeakerSection() {
               className="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:shadow-xl transition-all duration-300"
             >
               <div className="grid md:grid-cols-3 gap-8 p-8">
-                {/* Speaker Image and Info */}
                 <div className="md:col-span-1 flex flex-col items-center">
                   <div className="relative w-64 h-64 rounded-2xl overflow-hidden shadow-lg mb-6 transform hover:scale-105 transition-transform duration-300">
                     <Image
@@ -90,7 +128,6 @@ export default function SpeakerSection() {
                   </div>
                 </div>
 
-                {/* Speaker Details */}
                 <div className="md:col-span-2 space-y-8">
                   <div>
                     <h4 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">

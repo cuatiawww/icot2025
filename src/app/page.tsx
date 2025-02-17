@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-// app/page.tsx
 import Image from 'next/image'
 import Navbar from '@/src/components/Navbar'
 import AboutSection from '@/src/components/AboutSection'
@@ -8,6 +7,8 @@ import CommitteeSection from '@/src/components/CommiteeSection'
 import ImportantDatesSection from '@/src/components/ImportantDatesSection'
 import CallForPapersSection from '@/src/components/CallForPapersSection'
 import PaperSubmissionSection from '@/src/components/PaperSubmissionSection'
+import ProgramScheduleSection from '../components/ProgramScheduleSection'
+
 
 export default function Home() {
   return (
@@ -17,7 +18,6 @@ export default function Home() {
       {/* Hero Section */}
       <section id="home" className="relative min-h-screen flex items-center justify-center">
         <div className="absolute inset-0 bg-gray-800">
-          {/* Optional: Add background image */}
           {/* <Image
             src="/hero-bg.jpg"
             alt="Background"
@@ -27,14 +27,17 @@ export default function Home() {
         </div>
         
         <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            2024 IEEE-12th International Conference on Orange Technology
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+          2025 IEEE-13th International Conference on Orange Technology 
           </h1>
+          <p className="text-xl md:text-4xl mb-4">
+          (IEEE ICOT-2025)
+          </p>
           <p className="text-xl md:text-2xl mb-4">
-            December 15 ~ 18, 2024
+            October 28 ~ 30, 2025
           </p>
           <p className="text-xl md:text-2xl">
-            Tainan, Taiwan
+          Maranatha Christian University Bandung, Indonesia
           </p>
         </div>
       </section>
@@ -47,6 +50,9 @@ export default function Home() {
 
       {/* Committee Section */}
       <CommitteeSection />
+
+      {/* Program Schedule Section */}
+      <ProgramScheduleSection />
 
       {/* Important Dates Section */}
       <ImportantDatesSection />

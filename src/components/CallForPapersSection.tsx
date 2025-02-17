@@ -135,7 +135,7 @@ export default function CallForPapersSection() {
             For detailed paper format and submission instructions, please visit the conference website:
           </p>
           <a 
-            href="https://sites.google.com/view/icot-2024/"
+            href="https://www.ieee.org/conferences/publishing/templates.html"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-orange-500 text-white px-8 py-4 rounded-xl font-semibold hover:bg-orange-600 transition-colors duration-300 shadow-lg hover:shadow-xl"

@@ -173,10 +173,10 @@ export default function PaperSubmissionSection() {
               For any queries regarding paper submission, please email:
             </p>
             <a 
-              href="mailto:2024icot@gmail.com"
+              href="mailto:2025icot@gmail.com"
               className="inline-block bg-orange-500 text-white px-8 py-4 rounded-xl font-semibold hover:bg-orange-600 transition-colors duration-300 shadow-lg hover:shadow-xl"
             >
-              2024icot@gmail.com
+              2025icot@gmail.com
             </a>
           </div>
         </div>

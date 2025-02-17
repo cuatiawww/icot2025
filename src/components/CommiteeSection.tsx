@@ -74,6 +74,45 @@ export default function CommitteeSection() {
     )
   }
 
+  // If no categories or empty categories, show TBA section
+  if (categories.length === 0) {
+    return (
+      <section id="committee" className="py-24 bg-gradient-to-b from-white via-orange-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Organizing Committee
+            </h2>
+            <div className="w-24 h-1 bg-orange-500 mx-auto rounded-full"></div>
+          </div>
+          
+          <div className="bg-white rounded-2xl shadow-lg overflow-hidden p-12">
+            <div className="text-center space-y-6">
+              <h3 className="text-3xl font-bold text-gray-900">To Be Announced</h3>
+              <p className="text-xl text-gray-600">Our organizing committee will be announced soon.</p>
+              <div className="w-16 h-16 mx-auto">
+                <svg 
+                  className="text-orange-500 w-full h-full" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" 
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  // If there are categories, show them as before
   return (
     <section id="committee" className="py-24 bg-gradient-to-b from-white via-orange-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
